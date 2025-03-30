@@ -1,20 +1,29 @@
 import iterm2
 import asyncio
-from pypresence import AioPresence
+from pypresence import Presence
 
-client_id = ("1318136746642505738")
-RPC = AioPresence(client_id)
+clientId = ("1318136746642505738")
+RPC = Presence(clientId)
+
+def initConnection():
+    try:
+        RPC.connect()
+    except Exception as c:
+        print("Error with connection: {c}")
+
+def getUpdates(localDir):
+    try:
+        RPC.update(details="In directory:", state=localDir)
+    except Exception as u:
+        print("Error with updates: {u}")
 
 async def update_presence(session):
     """Update Discord Rich Presence continuously."""
-    try:
-        await RPC.connect()
-        while True:
-            local_dir = await session.async_get_variable("session.path")
-            await RPC.update(details="In directory:", state=local_dir)
-            await asyncio.sleep(1) 
-    except Exception as e:
-        print(f"Error with RPC: {e}")
+    await asyncio.to_thread(initConnection)
+    while True:
+        localDir = await session.async_get_variable("session.path")
+        await asyncio.to_thread(getUpdates, localDir)
+        await asyncio.sleep(1) 
 
 async def main(connection):
     """Main function for iTerm2 scripting."""
@@ -31,4 +40,5 @@ async def main(connection):
 
 # Use asyncio to manage the event loop
 if __name__ == "__main__":
-    asyncio.run(iterm2.run_forever(main))
+    # asyncio.run(iterm2.run_forever(main))
+    iterm2.run_forever(main)
