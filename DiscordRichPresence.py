@@ -2,8 +2,8 @@ import iterm2
 import asyncio
 from pypresence import Presence
 
-clientId = ("1318136746642505738")
-RPC = Presence(clientId)
+applicationID = ("1318136746642505738") # Set this to your own Application ID
+RPC = Presence(applicationID)
 
 def initConnection():
     try:
@@ -38,7 +38,5 @@ async def main(connection):
     else:
         print("No active window found.")
 
-# Use asyncio to manage the event loop
 if __name__ == "__main__":
-    # asyncio.run(iterm2.run_forever(main))
     iterm2.run_forever(main)
