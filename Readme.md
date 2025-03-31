@@ -74,5 +74,6 @@ Feel free to fork this project and make improvements! Pull requests are welcome.
 ## Future Features Ideas
 1. System details (CPU/RAM usage)
 2. Keyboard shortcut to enable/disable rich presence
+3. Auto reconnect when connection lost
 
 
