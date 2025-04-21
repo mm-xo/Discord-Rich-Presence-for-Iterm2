@@ -4,6 +4,8 @@
 
 A Python script that integrates **iTerm2** with **Discord Rich Presence**. It displays your current working directory in Discord's activity status.
 
+![DRP example on profile](./images/Example.png)
+
 ## Features
 - Shows your current working directory in iTerm2 as your Discord activity
 - Automatically updates when you change directories
